@@ -202,7 +202,7 @@
                     <div class="text-5xl md:text-7xl font-black gradient-text opacity-50 shrink-0">05</div>
                     <div class="text-right">
                         <h3 class="error-marker text-2xl md:text-4xl font-black mb-4 text-black text-right">המפיק שאומר "כן" לכל גחמה</h3>
-                        <p class="content-bold text-xl md:text-2xl leading-relaxed text-right">מפיק טוב הוא לא זה שרק מבצע. התפקיד שלי הוא לאתגר את המחשבה שלך ולפעמות גם לעצור הקלטה שלא משרת את המותג.</p>
+                        <p class="content-bold text-xl md:text-2xl leading-relaxed text-right">מפיק טוב הוא לא זה שרק מבצע. התפקיד שלי הוא לאתגר את המחשבה שלך ולפעמים גם לעצור הקלטה שלא משרת את המותג.</p>
                     </div>
                 </div>
             </div>
@@ -312,14 +312,16 @@
             const email = document.getElementById('email').value;
             const details = document.getElementById('details').value;
             
-            const message = `שלום אמיר, הגיעה פנייה חדשה מאתר האסטרטגיה שלך:\n\n` +
-‎                            `*שם:* ${name}\n` +
-‎                            `*טלפון:* ${phone}\n` +
-‎                            `*אימייל:* ${email}\n` +
-‎                            `*תיאור:* ${details}`;
+            const message = "שלום אמיר, הגיעה פנייה חדשה מאתר האסטרטגיה שלך:\n\n" +
+‎                            "*שם:* " + name + "\n" +
+‎                            "*טלפון:* " + phone + "\n" +
+‎                            "*אימייל:* " + email + "\n" +
+‎                            "*תיאור:* " + details;
             
             const waNumber = "972544820822";
-            window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            const url = "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(message);
+            
+            window.open(url, '_blank');
             
             this.classList.add('hidden');
             document.getElementById('successMessage').classList.remove('hidden');
