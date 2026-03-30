@@ -57,23 +57,11 @@
             opacity: 0.8;
         }
 
-        .authority-graphic {
-            width: 100%;
-            aspect-ratio: 4/5;
-            background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-blue) 100%);
+        .image-container {
             border-radius: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.25);
-            position: relative;
             overflow: hidden;
-        }
-
-        .authority-graphic svg {
-            width: 50%;
-            height: 50%;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.25);
+            background-color: #f3f4f6;
         }
 
         .spotify-container {
@@ -214,7 +202,7 @@
                     <div class="text-5xl md:text-7xl font-black gradient-text opacity-50 shrink-0">05</div>
                     <div class="text-right">
                         <h3 class="error-marker text-2xl md:text-4xl font-black mb-4 text-black text-right">המפיק שאומר "כן" לכל גחמה</h3>
-                        <p class="content-bold text-xl md:text-2xl leading-relaxed text-right">מפיק טוב הוא לא זה שרק מבצע. התפקיד שלי הוא לאתגר את המחשבה שלך ולפעמים גם לעצור הקלטה שלא משרת את המותג.</p>
+                        <p class="content-bold text-xl md:text-2xl leading-relaxed text-right">מפיק טוב הוא לא זה שרק מבצע. התפקיד שלי הוא לאתגר את המחשבה שלך ולפעמות גם לעצור הקלטה שלא משרת את המותג.</p>
                     </div>
                 </div>
             </div>
@@ -265,14 +253,10 @@
         <div class="max-w-7xl mx-auto text-right">
             <div class="flex flex-col md:flex-row-reverse items-center gap-24 md:gap-32">
                 <div class="md:w-1/2 w-full">
-                    <div class="authority-graphic">
-                        <!-- Modern Studio Microphone SVG Icon -->
-                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C10.3431 2 9 3.34315 9 5V11C9 12.6569 10.3431 14 12 14C13.6569 14 15 12.6569 15 11V5C15 3.34315 13.6569 2 12 2Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M19 10V11C19 14.866 15.866 18 12 18C8.13401 18 5 14.866 5 11V10" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M12 18V22" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M8 22H16" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                    <div class="image-container">
+                        <img id="profileImage" src="IMG_3200.JPG" alt="אמיר כהן" 
+                             class="w-full object-cover aspect-[4/5] hover:scale-105 transition duration-1000"
+                             onerror="this.onerror=null; this.src='IMG_3200.jpg';">
                     </div>
                 </div>
                 <div class="md:w-1/2 text-right">
