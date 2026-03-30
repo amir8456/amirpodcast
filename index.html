@@ -305,25 +305,26 @@
     </footer>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value;
-            const details = document.getElementById('details').value;
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
             
-            const message = "שלום אמיר, הגיעה פנייה חדשה מאתר האסטרטגיה שלך:\n\n" +
-‎                            "*שם:* " + name + "\n" +
-‎                            "*טלפון:* " + phone + "\n" +
-‎                            "*אימייל:* " + email + "\n" +
-‎                            "*תיאור:* " + details;
+            var nameValue = document.getElementById('name').value;
+            var phoneValue = document.getElementById('phone').value;
+            var emailValue = document.getElementById('email').value;
+            var detailsValue = document.getElementById('details').value;
             
-            const waNumber = "972544820822";
-            const url = "https://wa.me/" + waNumber + "?text=" + encodeURIComponent(message);
+            var msgText = "שלום אמיר, הגיעה פנייה חדשה מאתר האסטרטגיה שלך:\n\n" +
+‎                          "*שם:* " + nameValue + "\n" +
+‎                          "*טלפון:* " + phoneValue + "\n" +
+‎                          "*אימייל:* " + emailValue + "\n" +
+‎                          "*תיאור:* " + detailsValue;
             
-            window.open(url, '_blank');
+            var whatsappNum = "972544820822";
+            var finalUrl = "https://wa.me/" + whatsappNum + "?text=" + encodeURIComponent(msgText);
             
-            this.classList.add('hidden');
+            window.open(finalUrl, '_blank');
+            
+            document.getElementById('contactForm').classList.add('hidden');
             document.getElementById('successMessage').classList.remove('hidden');
         });
     </script>
