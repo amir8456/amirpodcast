@@ -10,342 +10,233 @@
         :root {
             --apple-bg: #ffffff;
             --apple-gray-light: #f5f5f7;
-            --apple-dark: #000000;
-            --apple-dark-surface: #1d1d1f;
-            --brand-blue: #3b82f6;
-            --brand-purple: #8b5cf6;
-            --brand-pink: #ec4899;
-            --absolute-red: #ff0000;
+            --brand-blue: #2563eb;
+            --brand-purple: #9333ea;
         }
         
-        * { box-sizing: border-box; }
-
         body {
             font-family: 'Assistant', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--apple-bg);
-            color: #000000;
+            color: #1d1d1f;
             overflow-x: hidden;
-            width: 100%;
             -webkit-font-smoothing: antialiased;
         }
         
         h1, h2, h3 { font-family: 'Heebo', sans-serif; }
         
         .apple-nav-blur {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: saturate(180%) blur(20px);
         }
         
+        /* Gradient: Purple on Right (End in LTR, Start in RTL), Blue on Left */
         .gradient-text {
-            background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-purple) 50%, var(--brand-pink) 100%);
+            background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-purple) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .brand-gradient-section {
-            background: linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #06b6d4 100%);
-            position: relative;
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-purple) 100%);
+        }
+        
+        .mistake-card {
+            background: var(--apple-gray-light);
+            border-radius: 28px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
+        }
+        .mistake-card:hover {
+            transform: translateY(-8px);
+            background: #ffffff;
+            border-color: #e5e7eb;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1);
         }
         
         .btn-apple-gradient {
             background: linear-gradient(135deg, var(--brand-blue) 0%, var(--brand-purple) 100%);
             color: white;
+            padding: 20px 40px;
             border-radius: 980px;
             font-weight: 800;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px -5px rgba(59, 130, 246, 0.4);
-            display: inline-block;
+            box-shadow: 0 10px 30px -5px rgba(37, 99, 235, 0.3);
+        }
+        .btn-apple-gradient:hover {
+            opacity: 0.95;
+            transform: scale(1.03);
+            box-shadow: 0 20px 40px -5px rgba(37, 99, 235, 0.4);
         }
 
-        /* IMPROVED RED MARKER - GUARANTEED UNDER TEXT */
-        .error-marker {
-            position: relative;
-            display: inline-block;
-            z-index: 1;
-        }
-
-        .error-marker::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -4px; /* Positive value pushes it DOWN outside the text height */
-            width: 100%;
-            height: 10px; 
-            background-color: var(--absolute-red);
-            z-index: -1;
-            opacity: 1;
-        }
-        
-        @media (min-width: 768px) {
-            .error-marker::after {
-                height: 14px;
-                bottom: -6px;
-                width: 104%;
-                left: -2%;
-            }
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 24px;
-        }
-
-        .headline-intro {
-            font-size: clamp(1.1rem, 4vw, 2.2rem);
-            font-weight: 700;
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #1d1d1f;
-        }
-        .headline-main {
-            font-size: clamp(2.2rem, 9vw, 6.5rem);
-            font-weight: 900;
-            display: block;
-            line-height: 1.05;
-        }
-
-        .spotify-container {
-            width: 100%;
-            border-radius: 18px;
+        .image-container {
+            border-radius: 32px;
             overflow: hidden;
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.25);
+            background-color: #f3f4f6;
+        }
+
+        .content-bold {
+            color: #000000 !important;
+            font-weight: 700 !important;
         }
     </style>
 </head>
-<body class="antialiased text-right">
+<body class="antialiased">
 
     <!-- Navigation -->
     <header class="fixed w-full top-0 apple-nav-blur z-50 border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between py-4">
-            <div class="text-xl md:text-2xl font-black tracking-tight">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="text-2xl font-black tracking-tight flex items-center">
                 <span class="gradient-text">אמיר כהן</span> 
+                <span class="text-gray-300 font-light mx-3">|</span> 
+                <span class="text-sm font-bold uppercase tracking-wider text-black">אסטרטגיה</span>
             </div>
-            <nav class="hidden lg:flex gap-8 text-sm font-black text-black">
-                <a href="#services" class="hover:text-blue-600 transition text-black">איך זה עובד</a>
-                <a href="#mistakes" class="hover:text-blue-600 transition text-black">למה זה לא עובד?</a>
-                <a href="#about" class="hover:text-blue-600 transition text-black">למה אמיר?</a>
+            <nav class="hidden md:flex gap-12 text-sm font-black text-black">
+                <a href="#mistakes" class="hover:text-purple-600 transition">5 הטעויות</a>
+                <a href="#about" class="hover:text-purple-600 transition">הניסיון שלי</a>
+                <a href="#contact" class="hover:text-purple-600 transition">שיחת אבחון</a>
             </nav>
-            <a href="#contact" class="bg-black text-white px-5 py-2 md:px-6 md:py-2.5 rounded-full text-xs md:text-sm font-black hover:bg-slate-800 transition">בואו נדבר</a>
+            <a href="#contact" class="bg-black text-white px-6 py-2.5 rounded-full text-xs font-black hover:bg-slate-800 transition">התחל כאן</a>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="pt-28 md:pt-48 pb-12 md:pb-24 px-4 md:px-6 bg-white overflow-hidden text-center">
-        <div class="max-w-5xl mx-auto">
-            <h1 class="hero-title mb-6 md:mb-10 text-balance">
-                <span class="headline-intro text-black font-bold">פודקאסט לעסקים</span>
-                <span class="headline-main gradient-text">שרוצים להוביל</span>
+    <section class="pt-52 pb-32 px-6 bg-white text-center">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-10 flex justify-center">
+                <span class="text-xs font-black text-purple-700 bg-purple-50 px-6 py-2.5 rounded-full border border-purple-100 uppercase tracking-widest shadow-sm">לשעבר סמנכ"ל תוכן רדיו 103FM</span>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black mb-12 text-black leading-tight tracking-tight">
+‎                במקום לסמן 'וי' על פודקאסט -<br>
+                <span class="gradient-text">הופכים תוכן להכנסות.</span>
             </h1>
-            
-            <div class="max-w-3xl mx-auto space-y-4 md:space-y-6">
-                <p class="text-lg md:text-3xl text-black font-bold text-balance leading-snug">
-‎                    קליפים מייצרים חשיפה רגעית. <br class="hidden md:block">
-                    <span>פודקאסט אסטרטגי בונה סמכות, אמון ומעמד בלתי מעורער בשוק.</span>
-                </p>
-                <p class="text-base md:text-xl text-black font-bold max-w-2xl mx-auto leading-relaxed">
-‎                    אני בונה לבעלי עסקים מערך פודקאסט מקצועי שמחבר בין תוכן עמוק, מיצוב גבוה ותוצאה עסקית.
-                </p>
+            <p class="text-2xl md:text-4xl text-black max-w-4xl mx-auto mb-16 leading-tight font-black">
+‎                רוב הפודקאסטים העסקיים הם נטל של זמן. <br class="hidden md:block">אני כאן כדי להפוך את הפודקאסט שלך לנכס אסטרטגי שמייצר לקוחות.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-10 justify-center items-center">
+                <a href="#contact" class="btn-apple-gradient text-2xl shadow-2xl">תיאום שיחת אבחון</a>
+                <a href="#mistakes" class="text-black hover:text-purple-700 text-xl font-black transition decoration-4 underline underline-offset-8 decoration-blue-500">למה פודקאסטים נכשלים? ←</a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-12 md:py-24 px-4 md:px-6 bg-gray-50 border-y border-gray-100">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-10 md:mb-16">
-                <h2 class="text-2xl md:text-5xl font-black text-black mb-4 tracking-tight text-balance text-center">ככה בונים פודקאסט שמביא תוצאות</h2>
-                <p class="text-lg md:text-xl text-black font-black text-center">המעטפת המלאה - מאסטרטגיה ועד לנתוני רייטינג</p>
+    <!-- Stats Bar -->
+    <section class="py-20 bg-gray-50 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
+            <div>
+                <div class="text-5xl font-black text-black mb-2">30+</div>
+                <p class="text-xs font-black text-slate-500 uppercase tracking-widest">שנות ניסיון בתוכן</p>
             </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 text-right">
-                <div class="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all">
-                    <div class="w-10 h-10 bg-blue-600 rounded-xl mb-4 flex items-center justify-center text-white font-black">01</div>
-                    <h3 class="text-lg md:text-xl font-black mb-2 text-black">אסטרטגיה ומיצוב</h3>
-                    <p class="text-sm md:text-base text-black font-bold leading-relaxed">דיוק המסר והגדרת היעדים כדי להפוך אותך לאוטוריטה בתחומך.</p>
-                </div>
-                <div class="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all">
-                    <div class="w-10 h-10 bg-purple-600 rounded-xl mb-4 flex items-center justify-center text-white font-black">02</div>
-                    <h3 class="text-lg md:text-xl font-black mb-2 text-black">תכנון תוכן חכם</h3>
-                    <p class="text-sm md:text-base text-black font-bold leading-relaxed">בניית פרקים שמייצרים ערך אמיתי ומניעים את המאזינים לפעולה.</p>
-                </div>
-                <div class="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all">
-                    <div class="w-10 h-10 bg-pink-600 rounded-xl mb-4 flex items-center justify-center text-white font-black">03</div>
-                    <h3 class="text-lg md:text-xl font-black mb-2 text-black">הפקה ועיבוד</h3>
-                    <p class="text-sm md:text-base text-black font-bold leading-relaxed">הקלטה, עריכה והפצה לכל הפלטפורמות. כל הצד הטכני - עלינו.</p>
-                </div>
-                <div class="bg-white p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl transition-all">
-                    <div class="w-10 h-10 bg-blue-500 rounded-xl mb-4 flex items-center justify-center text-white font-black">04</div>
-                    <h3 class="text-lg md:text-xl font-black mb-2 text-black text-nowrap">בקרה ורייטינג</h3>
-                    <p class="text-sm md:text-base text-black font-bold leading-relaxed">מעקב נתונים, פילוחי קהל וסטטיסטיקות כדי לדייק את ההצלחה.</p>
-                </div>
+            <div class="md:border-x border-gray-200">
+                <div class="text-5xl font-black text-black mb-2">103FM</div>
+                <p class="text-xs font-black text-slate-500 uppercase tracking-widest">סמנכ"ל תוכן לשעבר</p>
+            </div>
+            <div>
+                <div class="text-5xl font-black text-black mb-2">1.5M</div>
+                <p class="text-xs font-black text-slate-500 uppercase tracking-widest">צמיחה שנתית ללקוחות</p>
             </div>
         </div>
     </section>
 
     <!-- Mistakes Section -->
-    <section id="mistakes" class="py-12 md:py-24 px-4 md:px-6 bg-white overflow-hidden text-right">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-2xl md:text-5xl font-black mb-12 text-center tracking-tight leading-tight text-black text-balance">
-‎                למה רוב הפודקאסטים העסקיים <br class="hidden md:block"> לא מביאים תוצאות?
+    <section id="mistakes" class="py-32 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl md:text-7xl font-black mb-24 text-center tracking-tight leading-tight text-black">
+‎                5 טעויות שהופכות <br class="hidden md:block"> פודקאסט לנטל כלכלי.
             </h2>
             
-            <div class="space-y-0 border-t border-gray-100">
-                <div class="slot-item py-8 md:py-12 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-16">
-                    <span class="text-4xl md:text-6xl font-black gradient-text leading-none shrink-0">01</span>
-                    <div class="flex-1 text-center md:text-right">
-                        <div class="mb-4">
-                            <h3 class="error-marker text-lg md:text-3xl font-black text-black leading-tight">חיפוש תהילה במקום סמכות</h3>
-                        </div>
-                        <p class="text-base md:text-xl font-black text-black leading-relaxed">פודקאסט עסקי לא נועד לספק תחושת במה רדיופונית. הוא נועד לבנות אוטוריטה ולהפוך הקשבה לאמון.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10 text-right">
+                <div class="mistake-card p-12 flex flex-col justify-between min-h-[360px]">
+                    <span class="text-3xl font-black gradient-text">01</span>
+                    <div class="text-right">
+                        <h3 class="text-2xl font-black mb-5 text-black">מרדף אחרי קליפים</h3>
+                        <p class="content-bold text-xl leading-relaxed">קליפים הם כלי, לא אסטרטגיה. פודקאסט שלא עומד בפני עצמו לא יבנה אמון אצל הלקוחות שלך לאורך זמן.</p>
                     </div>
                 </div>
-                <div class="slot-item py-8 md:py-12 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-16">
-                    <span class="text-4xl md:text-6xl font-black gradient-text leading-none shrink-0">02</span>
-                    <div class="flex-1 text-center md:text-right">
-                        <div class="mb-4">
-                            <h3 class="error-marker text-lg md:text-3xl font-black text-black leading-tight">מלכודת ה״קליפים לטיקטוק״</h3>
-                        </div>
-                        <p class="text-base md:text-xl font-black text-black leading-relaxed">חשיפה לבדה לא בונה עסק. התבססות על רעש חולף היא טעות. תוכן עמוק הוא הדרך ליצירת בידול.</p>
+                <div class="mistake-card p-12 flex flex-col justify-between min-h-[340px]">
+                    <span class="text-3xl font-black gradient-text">02</span>
+                    <div class="text-right">
+                        <h3 class="text-2xl font-black mb-5 text-black">אותנטיות בלי כיוון</h3>
+                        <p class="content-bold text-xl leading-relaxed">"לזרום" זה מתכון לרעש. פודקאסט מצליח חייב לענות על שאלה אחת: איזו חשיבה אתה רוצה שהמאזין יאמץ בסוף הפרק?</p>
                     </div>
                 </div>
-                <div class="slot-item py-8 md:py-12 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-16">
-                    <span class="text-4xl md:text-6xl font-black gradient-text leading-none shrink-0">03</span>
-                    <div class="flex-1 text-center md:text-right">
-                        <div class="mb-4">
-                            <h3 class="error-marker text-lg md:text-3xl font-black text-black leading-tight">זלזול בפוטנציאל המכירה</h3>
-                        </div>
-                        <p class="text-base md:text-xl font-black text-black leading-relaxed">בבנייה נכונה, הפודקאסט הופך למכונה שסוגרת עסקאות ומקצרת תהליכי מכירה מורכבים.</p>
+                <div class="mistake-card p-12 flex flex-col justify-between min-h-[340px]">
+                    <span class="text-3xl font-black gradient-text">03</span>
+                    <div class="text-right">
+                        <h3 class="text-2xl font-black mb-5 text-black">מיקוד עצמי</h3>
+                        <p class="content-bold text-xl leading-relaxed">המאזין לא מקשיב כדי להכיר אותך, אלא כדי לשפר את חייו. פודקאסט אסטרטגי מוכר פתרון, לא שעות אולפן.</p>
                     </div>
                 </div>
-                <div class="slot-item py-10 md:py-12 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-16">
-                    <span class="text-4xl md:text-6xl font-black gradient-text leading-none shrink-0">04</span>
-                    <div class="flex-1 text-center md:text-right">
-                        <div class="mb-4">
-                            <h3 class="error-marker text-lg md:text-3xl font-black text-black leading-tight">התמקדות בטכניקה על פני מסר</h3>
-                        </div>
-                        <p class="text-base md:text-xl font-black text-black leading-relaxed">מיקרופון ואולפן הם פרטים טכניים. השאלה היא איזה שינוי הפודקאסט אמור לייצר אצל הלקוחות.</p>
+                <div class="mistake-card p-12 flex flex-col justify-between min-h-[340px]">
+                    <span class="text-3xl font-black gradient-text">04</span>
+                    <div class="text-right">
+                        <h3 class="text-2xl font-black mb-5 text-black">ניתוק מהעסק</h3>
+                        <p class="content-bold text-xl leading-relaxed">אם הפודקאסט הוא לא חלק בלתי נפרד מאסטרטגיית הצמיחה שלך, הוא יהיה נטל של זמן במקום נכס מניב.</p>
                     </div>
                 </div>
-                <div class="slot-item py-10 md:py-12 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-16 border-b border-gray-100">
-                    <span class="text-4xl md:text-6xl font-black gradient-text leading-none shrink-0">05</span>
-                    <div class="flex-1 text-center md:text-right">
-                        <div class="mb-4">
-                            <h3 class="error-marker text-lg md:text-3xl font-black text-black leading-tight">המפיק שאומר ״כן״ לכל גחמה</h3>
-                        </div>
-                        <p class="text-base md:text-xl font-black text-black leading-relaxed">מפיק טוב הוא לא זה שרק מבצע. התפקיד שלי הוא לאתגר את המחשבה שלך ולפעמים גם לעצור הקלטה שלא משרתת את המותג.</p>
+                <div class="mistake-card p-12 flex flex-col justify-between min-h-[340px] lg:col-span-2">
+                    <span class="text-3xl font-black gradient-text">05</span>
+                    <div class="text-right">
+                        <h3 class="text-2xl font-black mb-5 text-black">חוסר באתגר מחשבתי</h3>
+                        <p class="content-bold text-xl leading-relaxed">מפיקים רגילים יגידו לך "כן" כדי להמשיך להפיק. אני כאן כדי להגיד לך "עצור" כשהרעיון לא משרת את העסק. לפעמים לא להקליט היא ההחלטה הכי רווחית שתעשה.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Philosophy Section -->
-    <section class="py-16 md:py-32 brand-gradient-section text-white px-4 md:px-6 text-center">
-        <div class="max-w-5xl mx-auto relative z-10 text-center">
-            <h2 class="font-black leading-tight italic mb-8 md:mb-12 text-center">
-                <span class="text-xl md:text-4xl mb-4 font-bold flex items-center justify-center gap-3 text-balance">
-                    <span>במקום לסמן</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-12 md:h-12 inline-block" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                    <span>על פודקאסט…</span>
-                </span>
-                <span class="text-3xl md:text-8xl block tracking-tighter drop-shadow-xl">הופכים תוכן להכנסות.</span>
-            </h2>
-            <div class="max-w-3xl mx-auto glass-card p-6 md:p-10">
-                <p class="text-lg md:text-3xl text-white font-black text-balance leading-relaxed text-center">
-‎                    כך לקוחותיי עוברים ממחזורים של מאות אלפים למיליוני שקלים בשנה. <br class="hidden md:block"> ללא טריקים, רק אסטרטגיה ותוכן חכם.
-                </p>
+    <!-- About Me Section -->
+    <section id="about" class="py-40 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row-reverse items-center gap-24 md:gap-32">
+                <div class="md:w-1/2">
+                    <div class="image-container">
+                        <img id="profileImage" src="IMG_3200.JPG" alt="אמיר כהן באולפן" 
+                             class="w-full object-cover aspect-[4/5] hover:scale-105 transition duration-1000"
+                             onerror="this.onerror=null; this.src='IMG_3200.jpg';">
+                    </div>
+                </div>
+                <div class="md:w-1/2 text-right">
+                    <h2 class="text-sm font-black uppercase tracking-widest gradient-text mb-6">השותף האסטרטגי שלך</h2>
+                    <h3 class="text-5xl md:text-7xl font-black mb-12 leading-tight text-black">אני אמיר כהן,<br>ואני כאן כדי שזה יעבוד.</h3>
+                    <div class="space-y-10 text-2xl text-black font-black leading-relaxed">
+                        <p>
+‎                            אחרי שלושה עשורים בלב תעשיית התוכן והרדיו, כולל שנים כסמנכ"ל התוכן של <strong>רדיו 103FM</strong>, למדתי שפודקאסט מצליח הוא לא פרויקט טכני – הוא פרויקט של חשיבה.
+                        </p>
+                        <p>
+‎                            אני לא כאן כדי לספק לך מיקרופון. אני כאן כדי להפוך את הקול שלך לנכס שגדל עם העסק, בונה סמכות אמיתית ומייצר הכנסות בשורה התחתונה.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Case Studies Section -->
-    <section class="py-12 md:py-24 px-4 md:px-6 bg-white border-b border-gray-100 text-center">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-2xl md:text-5xl font-black mb-10 md:mb-16 tracking-tight text-balance text-center">הנה כמה דוגמאות מהשטח</h2>
+    <!-- Contact Form -->
+    <section id="contact" class="py-32 px-6 bg-gray-50 text-center">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-5xl md:text-6xl font-black mb-8 text-black">בוא נתחיל לחשוב.</h2>
+            <p class="text-black text-2xl font-black mb-16 text-center">שיחת אבחון אסטרטגית ללא התחייבות. בלי מכירה אגרסיבית.</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 text-right">
-                <div class="bg-gray-100 p-6 md:p-10 rounded-3xl border border-gray-200 flex flex-col text-right">
-                    <div class="mb-6 flex-grow">
-                        <span class="text-xs md:text-sm font-black text-blue-600 uppercase tracking-widest mb-2 block">המדריך המלא למתווך המצליח, עם מיכל אביב</span>
-                        <h3 class="text-xl md:text-3xl font-black text-black mb-3">מהפכה בעולם התיווך</h3>
-                        <p class="text-sm md:text-lg text-black font-black leading-relaxed">ה-ai משתלט על תחום התיווך, ראיון מיוחד</p>
-                    </div>
-                    <div class="spotify-container shadow-xl">
-                        <iframe style="border-radius:18px" src="https://open.spotify.com/embed/episode/6GFqsY0voVHGR9bGVJ2Wbn?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                    </div>
-                </div>
-                <div class="bg-gray-100 p-6 md:p-10 rounded-3xl border border-gray-200 flex flex-col text-right">
-                    <div class="mb-6 flex-grow text-right">
-                        <span class="text-xs md:text-sm font-black text-purple-600 uppercase tracking-widest mb-2 block">פודקאר עם עידו שחם</span>
-                        <h3 class="text-xl md:text-3xl font-black text-black mb-3 text-balance">רעיון מקורי לפודקאסט מצליח</h3>
-                        <p class="text-sm md:text-lg text-black font-black leading-relaxed">גדולי עולם התיווך מצטרפים לעידו שחם לנסיעה בקבריולט</p>
-                    </div>
-                    <div class="spotify-container shadow-xl">
-                        <iframe style="border-radius:18px" src="https://open.spotify.com/embed/episode/7Ly2kZHe4R0pZxDk5UOGju?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-16 md:py-32 bg-[#000000] text-white px-4 md:px-6 overflow-hidden">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row-reverse items-center gap-10 md:gap-24">
-                <div class="w-full md:w-1/2 flex justify-center">
-                    <!-- Standardized Image Container -->
-                    <div class="glass-card w-full max-w-[300px] md:max-w-md aspect-[4/5] overflow-hidden border-white/20 bg-white/10 p-0 shadow-2xl relative">
-                        <img src="IMG_3200.jpg" alt="אמיר כהן" class="absolute inset-0 w-full h-full object-cover">
-                    </div>
-                </div>
-                <div class="w-full md:w-1/2 text-center md:text-right">
-                    <div class="mb-6 md:mb-10 text-center md:text-right">
-                        <p class="text-lg md:text-2xl font-bold text-white mb-2">נעים להכיר,</p>
-                        <!-- Smaller font size for mobile and desktop to fit on one line -->
-                        <h3 class="text-3xl md:text-5xl font-black text-white leading-tight">אני אמיר כהן</h3>
-                    </div>
-                    <div class="space-y-6 text-base md:text-xl text-white font-bold leading-relaxed text-balance text-center md:text-right">
-                        <p>אחרי שלושה עשורים בלב תעשיית התוכן והרדיו, כולל 18 שנים כסמנכ"ל התוכן של <strong>רדיו 103FM</strong>, למדתי שפודקאסט מצליח הוא לא פרויקט טכני – הוא פרויקט של השפעה.</p>
-                        <p>ניהלתי ועבדתי עם השדרים המובילים בישראל. המטרה שלי היא להביא את הידע הזה לעסק שלך, ולהפוך את הקול שלך לנכס שמייצר הכנסות בשורה התחתונה.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-12 md:py-24 px-4 md:px-6 bg-gray-50 text-center">
-        <div class="max-w-3xl mx-auto">
-            <div class="mb-8 md:mb-16 text-center">
-                <h2 class="text-4xl md:text-8xl font-black text-black leading-tight tracking-tight">בואו נדבר</h2>
-            </div>
-            
-            <form id="contactForm" class="space-y-4 md:space-y-6 bg-white p-6 md:p-14 rounded-2xl md:rounded-[40px] shadow-2xl border border-gray-100 text-right">
-                <div class="space-y-4">
-                    <input type="text" id="name" placeholder="שם מלא" required class="w-full px-5 py-4 md:px-8 md:py-5 rounded-xl border-2 border-gray-200 bg-white focus:border-blue-500 outline-none transition text-base md:text-xl font-black text-black">
-                    <input type="tel" id="phone" placeholder="טלפון ליצירת קשר" required class="w-full px-5 py-4 md:px-8 md:py-5 rounded-xl border-2 border-gray-200 bg-white focus:border-blue-500 outline-none transition text-base md:text-xl font-black text-black text-left" dir="ltr">
-                    <input type="email" id="email" placeholder="אימייל" required class="w-full px-5 py-4 md:px-8 md:py-5 rounded-xl border-2 border-gray-200 bg-white focus:border-blue-500 outline-none transition text-base md:text-xl font-black text-black text-left" dir="ltr">
-                    <textarea id="details" rows="3" placeholder="ספר/י לי קצת על המטרות העסקיות שלך מהפודקאסט?" class="w-full px-5 py-4 md:px-8 md:py-5 rounded-xl border-2 border-gray-200 bg-white focus:border-blue-500 outline-none transition text-base md:text-xl font-black text-black"></textarea>
-                </div>
-                <button type="submit" class="w-full btn-apple-gradient text-lg md:text-2xl py-5 md:py-7 font-black">שלחו לי הודעה</button>
+            <form id="contactForm" class="space-y-8 bg-white p-10 md:p-16 rounded-[40px] shadow-2xl border border-gray-100 text-right">
+                <input type="text" id="name" placeholder="שם מלא" required class="w-full px-8 py-5 rounded-2xl border-2 border-gray-50 bg-gray-50 focus:border-purple-500 focus:bg-white outline-none transition text-xl font-black text-black">
+                <input type="tel" id="phone" placeholder="טלפון ליצירת קשר" required class="w-full px-8 py-5 rounded-2xl border-2 border-gray-50 bg-gray-50 focus:border-purple-500 focus:bg-white outline-none transition text-xl font-black text-black text-left" dir="ltr">
+                <input type="email" id="email" placeholder="אימייל" required class="w-full px-8 py-5 rounded-2xl border-2 border-gray-50 bg-gray-50 focus:border-purple-500 focus:bg-white outline-none transition text-xl font-black text-black text-left" dir="ltr">
+                <textarea id="details" rows="4" placeholder="ספר לי קצת על הרעיון שלך להכנסות מהפודקאסט?" class="w-full px-8 py-5 rounded-2xl border-2 border-gray-50 bg-gray-50 focus:border-purple-500 focus:bg-white outline-none transition text-xl font-black text-black"></textarea>
+                <button type="submit" class="w-full btn-apple-gradient text-2xl py-7">לקביעת שיחת אבחון</button>
             </form>
 
-            <div id="successMessage" class="hidden text-center p-10 md:p-20 bg-white rounded-[40px] mt-8 shadow-2xl border-2 border-green-500 text-center">
-                <h3 class="text-2xl md:text-4xl font-black mb-4 text-green-600">תודה, אמיר.</h3>
-                <p class="text-black text-lg md:text-2xl font-black">הפרטים נשלחו ישירות לוואטסאפ. נחזור אליך בקרוב.</p>
+            <div id="successMessage" class="hidden text-center p-20 bg-white rounded-[40px] mt-10 shadow-2xl border-2 border-green-100">
+                <h3 class="text-4xl font-black mb-5 text-green-600">תודה, אמיר.</h3>
+                <p class="text-black text-2xl font-black">הפרטים נשלחו ישירות לוואטסאפ. נחזור אליך בקרוב.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-10 px-6 text-center bg-white border-t border-gray-100 text-center">
-        <div class="max-w-7xl mx-auto text-center">
-            <p class="text-black text-base md:text-lg font-black mb-1">אמיר כהן | אסטרטגיית תוכן והכנסות מפודקאסטים</p>
-            <p class="text-black text-xs font-bold uppercase tracking-widest text-center">© 2024 כל הזכויות שמורות</p>
-        </div>
+    <footer class="py-20 px-6 text-center bg-white border-t border-gray-100">
+        <p class="text-black text-xl font-black mb-3">אמיר כהן | אסטרטגיית תוכן והכנסות מפודקאסטים</p>
+        <p class="text-slate-400 text-sm font-bold uppercase tracking-widest">© 2024 כל הזכויות שמורות</p>
     </footer>
 
     <script>
@@ -355,9 +246,16 @@
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value;
             const details = document.getElementById('details').value;
-            const message = `שלום אמיר, פנייה חדשה מדף הנחיתה:\n\n*שם:* ${name}\n*טלפון:* ${phone}\n*אימייל:* ${email}\n*מטרות:* ${details}`;
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/972544820822?text=${encodedMessage}`, '_blank');
+            
+            const message = `שלום אמיר, הגיעה פנייה חדשה מאתר האסטרטגיה שלך:\n\n` +
+‎                            `*שם:* ${name}\n` +
+‎                            `*טלפון:* ${phone}\n` +
+‎                            `*אימייל:* ${email}\n` +
+‎                            `*תיאור:* ${details}`;
+            
+            const waNumber = "972544820822";
+            window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`, '_blank');
+            
             this.classList.add('hidden');
             document.getElementById('successMessage').classList.remove('hidden');
         });
