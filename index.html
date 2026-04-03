@@ -49,6 +49,7 @@
             background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-blue) 100%);
         }
 
+        /* Error Marker with Red Line Underneath */
         .error-marker {
             position: relative;
             display: inline-block;
@@ -99,6 +100,13 @@
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
             border: 1px solid #f0f0f0;
         }
+
+        .highlight-gradient {
+            background: linear-gradient(90deg, #9333ea 0%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
     </style>
 </head>
 <body class="antialiased text-right">
@@ -106,15 +114,15 @@
     <!-- Navigation -->
     <header class="fixed w-full top-0 apple-nav-blur z-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 text-right">
                 <span class="text-xl md:text-2xl font-black gradient-text">אמיר כהן</span> 
                 <span class="hidden sm:inline text-gray-300 font-light mx-2">|</span> 
                 <span class="hidden sm:inline text-xs md:text-base font-bold text-black text-nowrap">הפקת פודקאסטים לעסקים, מהרעיון ועד להפצה</span>
             </div>
-            <nav class="flex items-center gap-4 md:gap-12">
+            <nav class="flex items-center gap-4 md:gap-10">
                 <a href="#services" class="text-xs md:text-sm font-black text-black hover:text-blue-600 transition">איך זה עובד</a>
                 <a href="#mistakes" class="text-xs md:text-sm font-black text-black hover:text-blue-600 transition">טעויות</a>
-                <a href="#contact" class="text-sm md:text-xl font-black text-blue-600 hover:scale-105 transition-transform text-nowrap bg-blue-50 px-4 py-2 rounded-full">בוא נדבר</a>
+                <a href="#contact" class="text-sm md:text-xl font-black text-blue-600 hover:scale-105 transition-transform text-nowrap bg-blue-50 px-4 py-2 rounded-full border-2 border-blue-100 shadow-sm">בוא נדבר</a>
             </nav>
         </div>
     </header>
@@ -122,15 +130,23 @@
     <!-- Hero Section -->
     <section class="pt-24 md:pt-44 pb-8 md:pb-12 px-6 bg-white text-center">
         <div class="max-w-6xl mx-auto">
-            <h1 class="mb-6 md:mb-10 text-black leading-tight tracking-tight">
-                <span class="block text-xl md:text-5xl font-black mb-2 md:mb-4 text-center">פודקאסט לעסקים</span>
-                <span class="headline-main gradient-text text-center">שרוצים להוביל</span>
+            <h1 class="mb-6 md:mb-10 text-black leading-tight tracking-tight text-center">
+                <span class="block text-xl md:text-5xl font-black mb-2 md:mb-4">פודקאסט לעסקים</span>
+                <span class="headline-main gradient-text">שרוצים להוביל</span>
             </h1>
             
-            <div class="max-w-5xl mx-auto text-center">
-                <p class="text-lg md:text-4xl text-black font-black leading-tight text-center">
-‎                    קליפים מייצרים חשיפה רגעית. <br>
-‎                    פודקאסט אסטרטגי בונה סמכות, אמון ומעמד בלתי מעורער בשוק.
+            <div class="max-w-5xl mx-auto text-center flex flex-col gap-4 md:gap-6">
+                <!-- Line 1 -->
+                <p class="text-lg md:text-4xl text-black font-black leading-tight">
+‎                    קליפים קצרים מתוך פודקאסט חד פעמי נותנים חשיפה רגעית.
+                </p>
+                <!-- Line 2 -->
+                <p class="text-2xl md:text-5xl text-purple-600 font-black underline underline-offset-8 decoration-4 decoration-blue-200">
+‎                    רוצה להכפיל הכנסות?
+                </p>
+                <!-- Line 3 -->
+                <p class="text-lg md:text-3xl text-black font-bold">
+‎                    פודקאסט עם אסטרטגיה שיווקית הוא נכס אסטרטגי <span class="highlight-gradient">ומנוע צמיחה אמיתי.</span>
                 </p>
             </div>
         </div>
@@ -140,39 +156,39 @@
     <section id="services" class="py-10 md:py-20 px-6 bg-gray-50 border-y border-gray-100">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-10 md:mb-16">
-                <h2 class="text-3xl md:text-6xl font-black text-black mb-2 md:mb-4">ככה בונים פודקאסט שמביא תוצאות</h2>
-                <p class="text-lg md:text-xl font-bold text-gray-600">המעטפת המלאה - מאסטרטגיה ועד לנתונים</p>
+                <h2 class="text-3xl md:text-6xl font-black text-black mb-2 md:mb-4 text-center">ככה בונים פודקאסט שמביא תוצאות</h2>
+                <p class="text-lg md:text-xl font-bold text-gray-600 text-center text-nowrap">המעטפת המלאה - מאסטרטגיה ועד לנתונים</p>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                 <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 text-right">
                     <span class="w-8 h-8 md:w-10 md:h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center font-black mb-4 text-base md:text-xl">01</span>
-                    <h3 class="text-lg md:text-xl font-black mb-2 text-black">אסטרטגיה ומיצוב</h3>
-                    <p class="text-sm md:text-base font-bold text-gray-700 leading-relaxed">דיוק המסר והגדרת היעדים כדי להפוך אותך לאוטוריטה בתחומך.</p>
+                    <h3 class="text-lg md:text-xl font-black mb-2 text-black text-right">אסטרטגיה ומיצוב</h3>
+                    <p class="text-sm md:text-base font-bold text-gray-700 leading-relaxed text-right">דיוק המסר והגדרת היעדים כדי להפוך אותך לאוטוריטה בתחומך.</p>
                 </div>
                 <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 text-right">
                     <span class="w-8 h-8 md:w-10 md:h-10 bg-purple-600 text-white rounded-lg flex items-center justify-center font-black mb-4 text-base md:text-xl">02</span>
-                    <h3 class="text-lg md:text-xl font-black mb-2 text-black">תכנון תוכן חכם</h3>
-                    <p class="text-sm md:text-base font-bold text-gray-700 leading-relaxed">בניית פרקים שמייצרים ערך אמיתי ומניעים את המאזינים לפעולה.</p>
+                    <h3 class="text-lg md:text-xl font-black mb-2 text-black text-right">תכנון תוכן חכם</h3>
+                    <p class="text-sm md:text-base font-bold text-gray-700 leading-relaxed text-right">בניית פרקים שמייצרים ערך אמיתי ומניעים את המאזינים לפעולה.</p>
                 </div>
                 <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100 text-right">
                     <span class="w-8 h-8 md:w-10 md:h-10 bg-pink-600 text-white rounded-lg flex items-center justify-center font-black mb-4 text-base md:text-xl">03</span>
-                    <h3 class="text-lg md:text-xl font-black mb-2 text-black">הפקה ועיבוד</h3>
-                    <p class="text-sm md:text-base font-bold text-gray-700 leading-relaxed">הקלטה, עריכה והפצה לכל הפלטפורמות. כל הצד הטכני - עלינו.</p>
+                    <h3 class="text-lg md:text-xl font-black mb-2 text-black text-right">הפקה ועיבוד</h3>
+                    <p class="text-sm md:text-base font-bold text-gray-700 leading-relaxed text-right">הקלטה, עריכה והפצה לכל הפלטפורמות. כל הצד הטכני - עלינו.</p>
                 </div>
                 <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 text-right">
                     <span class="w-8 h-8 md:w-10 md:h-10 bg-blue-500 text-white rounded-lg flex items-center justify-center font-black mb-4 text-base md:text-xl">04</span>
-                    <h3 class="text-lg md:text-xl font-black mb-2 text-black text-nowrap">בקרה ורייטינג</h3>
-                    <p class="text-sm md:text-base font-bold text-gray-700 leading-relaxed">מעקב נתונים, פילוחי קהל וסטטיסטיקות כדי לדייק את ההצלחה.</p>
+                    <h3 class="text-lg md:text-xl font-black mb-2 text-black text-nowrap text-right">בקרה ורייטינג</h3>
+                    <p class="text-sm md:text-base font-bold text-gray-700 leading-relaxed text-right">מעקב נתונים, פילוחי קהל וסטטיסטיקות כדי לדייק את ההצלחה.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Mistakes Section -->
+    <!-- Mistakes Section (Slot Layout) -->
     <section id="mistakes" class="py-12 md:py-24 px-6 bg-white">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl md:text-7xl font-black mb-10 md:mb-20 text-center tracking-tight leading-tight text-black">
+            <h2 class="text-3xl md:text-7xl font-black mb-10 md:mb-20 text-center tracking-tight leading-tight text-black text-center">
 ‎                5 טעויות שהופכות <br class="hidden md:block text-center"> פודקאסט לנטל כלכלי.
             </h2>
             
@@ -208,7 +224,7 @@
                 <div class="slot-item py-6 md:py-10 flex flex-col md:flex-row gap-4 md:gap-8 items-start">
                     <div class="text-4xl md:text-7xl font-black gradient-text opacity-40 shrink-0">05</div>
                     <div class="text-right">
-                        <h3 class="error-marker text-xl md:text-4xl font-black mb-2 md:mb-4 text-black text-right">המפיק שאומר "כן"</h3>
+                        <h3 class="error-marker text-xl md:text-4xl font-black mb-2 md:mb-4 text-black text-right text-nowrap">המפיק שאומר "כן"</h3>
                         <p class="font-extrabold text-base md:text-2xl leading-relaxed text-right">מפיק טוב הוא לא זה שרק מבצע. התפקיד שלי הוא לאתגר את המחשבה שלך ולפעמים גם לעצור הקלטה שלא משרת את המותג.</p>
                     </div>
                 </div>
@@ -218,13 +234,13 @@
 
     <!-- Case Studies Section -->
     <section id="examples" class="py-10 md:py-24 px-6 bg-gray-50 border-y border-gray-100">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl md:text-6xl font-black mb-8 md:mb-16 text-center text-black">דוגמאות מהשטח</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 text-right">
+        <div class="max-w-6xl mx-auto text-right">
+            <h2 class="text-3xl md:text-6xl font-black mb-8 md:mb-16 text-center text-black text-center">דוגמאות מהשטח</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
                 <div class="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm text-right">
                     <div class="mb-4 text-right">
-                        <span class="text-xs font-black text-purple-600 uppercase tracking-widest block mb-1">מיכל אביב</span>
-                        <h3 class="text-lg md:text-2xl font-black text-black">המדריך למתווך המצליח</h3>
+                        <span class="text-xs font-black text-purple-600 uppercase tracking-widest block mb-1 text-right">מיכל אביב</span>
+                        <h3 class="text-lg md:text-2xl font-black text-black text-right">המדריך למתווך המצליח</h3>
                     </div>
                     <div class="spotify-container shadow-md">
                         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/6GFqsY0voVHGR9bGVJ2Wbn?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -232,8 +248,8 @@
                 </div>
                 <div class="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-sm text-right">
                     <div class="mb-4 text-right">
-                        <span class="text-xs font-black text-blue-600 uppercase tracking-widest block mb-1">עידו שחם</span>
-                        <h3 class="text-lg md:text-2xl font-black text-black text-nowrap">פודקאר - בדרך להצלחה</h3>
+                        <span class="text-xs font-black text-blue-600 uppercase tracking-widest block mb-1 text-right">עידו שחם</span>
+                        <h3 class="text-lg md:text-2xl font-black text-black text-nowrap text-right">פודקאר - בדרך להצלחה</h3>
                     </div>
                     <div class="spotify-container shadow-md">
                         <iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/7Ly2kZHe4R0pZxDk5UOGju?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -245,7 +261,7 @@
 
     <!-- Full Width Quote Section -->
     <section class="py-16 md:py-32 brand-gradient-section text-white px-6 text-center">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-5xl mx-auto text-center">
             <h2 class="text-3xl md:text-8xl font-black mb-6 md:mb-10 leading-tight text-center">
 ‎                "אל תבנה פודקאסט. <br class="hidden md:block text-center"> תבנה ערוץ השפעה."
             </h2>
@@ -263,13 +279,13 @@
                     <div class="image-container max-w-sm mx-auto md:max-w-none">
                         <img id="profileImage" src="IMG_3200.JPG" alt="אמיר כהן" 
                              class="w-full object-cover aspect-[4/5] hover:scale-105 transition duration-1000"
-                             onerror="this.onerror=null; this.src='IMG_3200.jpg';">
+                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1478737270239-2fccd2c7862a?auto=format&fit=crop&q=80&w=800';">
                     </div>
                 </div>
                 <div class="md:w-1/2 text-right">
                     <h2 class="font-black mb-6 md:mb-10 text-black text-right flex items-baseline gap-2 md:gap-3 flex-wrap">
-                        <span class="text-xl md:text-4xl">נעים להכיר,</span>
-                        <span class="text-3xl md:text-7xl">אני אמיר כהן</span>
+                        <span class="text-xl md:text-4xl font-normal text-right">נעים להכיר,</span>
+                        <span class="text-3xl md:text-7xl text-right">אני אמיר כהן</span>
                     </h2>
                     <div class="space-y-6 md:space-y-8 text-lg md:text-2xl text-black font-extrabold leading-relaxed text-right">
                         <p class="text-right">
@@ -306,7 +322,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-10 md:py-16 px-6 text-center bg-white border-t border-gray-100">
+    <footer class="py-10 md:py-16 px-6 text-center bg-white border-t border-gray-100 text-center">
         <p class="text-black text-lg md:text-xl font-black mb-2 text-center">אמיר כהן | אסטרטגיית תוכן והכנסות מפודקאסטים</p>
         <p class="text-slate-400 text-xs font-bold uppercase tracking-widest text-center">© 2024 כל הזכויות שמורות</p>
     </footer>
